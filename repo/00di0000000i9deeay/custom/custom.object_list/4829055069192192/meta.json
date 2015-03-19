@@ -1,0 +1,267 @@
+{
+  "schema": [
+    {
+      "controls": [
+        {
+          "values": [
+            {
+              "id": "red",
+              "label": "Red"
+            },
+            {
+              "id": "yellow",
+              "label": "Yellow"
+            },
+            {
+              "id": "green",
+              "label": "Green"
+            },
+            {
+              "id": "blue",
+              "label": "Blue"
+            },
+            {
+              "id": "grey",
+              "label": "Grey"
+            }
+          ],
+          "desc": "The urgency of the card. This will show as the background color behind the number at the top left of the card.",
+          "name": "urgency",
+          "label": "Urgency",
+          "type": "select"
+        },
+        {
+          "values": [
+            {
+              "id": "number",
+              "label": "Number"
+            },
+            {
+              "id": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAV9JREFUeNrs3cGJwlAYhdFEUoAlpIc0pBVoB2InaejVoJ3oizsRIRCJkHvOxsXggPwf10EX0zQAAAAAAAAAAGxK++0HwzA8NvZax1LK0cnf7YJe66FG3Tt5bgCTi5NnB2AFwgN4ReDs2QGc6grsnT43gOn4Z6fPDcAKCMAKpAdgBQRgBdIDsAJVu8HP/LEACIBZul//wlJKu/aLqG9jt/rQO2fuAlydMjiAujpjfbg7Z/bfAFYgOQArYAGsQHoAVsACWIH0AKyABbAC6QFYAQtgBWZa9HXwPz7359OSG/o20FsAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAmA13ZInL/lfNVgABIAAEAACQAAIAAEgAASAABAAAkAAAAAAAAAAAADAbE8BBgBdDzIAQEUhKwAAAABJRU5ErkJggg==",
+              "label": "Account"
+            },
+            {
+              "id": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABAdJREFUeNrsnYFt2kAUQA/EAO4E9QiJMkBhgiYTQCdIMkHDBKQTABNAJ4AFEGxQOkGzQXs/XBSEmgD22fG//55kIYF9tvnP3+fznd1yEbi6uvrr0uPTarV6conTdvAWdxZ2EgHe5tZntgwB7JJZyAIIYDwLIIDxLIAAxrMAAhjPAghgPAsggPEsgADGswACnJcFRqntVOvcBRJt90+G1WrVIgMAAsBpdLSlrLL4U1juP34ReqMZwAu39R9DQm/7FPDopyfCb1SA0NPnB+E3XAn0Ejz4jy0C2GaIAIbxWWBiPQvQDmA8C5gXwHoWIAMYzwII8JoFlhb3vVPjn9xquAS9Jm1PXXddyQBcBgICAAIAAgACAAIAAoAdOtZ2OAzuuPZT7qfP4evfbnc/YG7hsTAmBQidQb/7afDObGM/38R/DkPfQU4BiQRfjvj1keC/IPOswzIIkEDwJaAztxvadSoy7ywsiwDKj/xxiSLGqWeCdsLBz0oGf18CnhCikNGZaf+908EIAfTV+GOevwehTARQwrWSMhGgIr4qKRMBKqKrpEwEqKj2r65sBIjHhdKyEQAQIAZbpWUjQAyqvIuX4h3CVE8BGyVlIgACIEAV/FRSJgJUxFJJmQhQUWVN+vVNIhY5SbWvYMrtANOGloUANWWBZaS0vQxlIYBChg0pAwE+MAvMSxQxT/not5ABhG+uWBPuNizrEED/FcGNO+/ZwM/LWBgllNTIoHC/vitHrw/eZk+Cjf9NngG0cMc7ikrQe/vLh7LlVnAeKoVPZIBmBb7rJ+kC/sftBoHMDjtvhIBeHrkykN8u/xP87KVcWYesS9ZJBmhA4N1uvN9hMPIQrN6BBHJe74WjWTp5fgk/ScCnh4HfYxbKfGHgdj2FRZih5opibS+Niv2YOL8d0lf/2Lv8Jn66L5qyw5E/cse7mD/6ddxH3r9a/ue2wqM+89PanfYiRwncokif/rDMwp02vuBOtkljn8G2tuCHoJzTN0/mleDcnbEemXddYD0LbRJoqwOMXbGOmc+p3Afn1u0ahqZv1PL77vXhEUW4CNt4Qx0gch0gjNKdKflfpQ1hXnJ/qQMcMGJbjdYBwtGfKxIg1/JcAS0ZoK/wEruPAPHoKhSgiwBx0n/u4jzooW4yDc8U0JABcqcXBIhxJCkWIEOA8mgekdv4bW98S2B4xeuDA9NXAYAAgACAAIAAgACAAIAAUJ7GNATV9bLkJtCkF2mTATgFAAIAAgACAFcB1IzJAIAAgACAAEAlsEZSawrWUqklA3AKAAQABAAEAK4CqDWTAQABAAEAAQABAAEAAQABIFVqawiyNPKHDAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAB/PPwEGAPVlGCmEh5VdAAAAAElFTkSuQmCC",
+              "label": "Contact"
+            },
+            {
+              "id": "data:image/png;base64,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",
+              "label": "Opportunity"
+            },
+            {
+              "id": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0JBMjZEODNGNTJEMTFFM0EzNERDMUJCMTEwNzRDMTYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0JBMjZEODRGNTJEMTFFM0EzNERDMUJCMTEwNzRDMTYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpDQkEyNkQ4MUY1MkQxMUUzQTM0REMxQkIxMTA3NEMxNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpDQkEyNkQ4MkY1MkQxMUUzQTM0REMxQkIxMTA3NEMxNiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pu1r+agAAAN4SURBVHja3FrPaxNBFN5sFLQI5qjQvdj4A6oUXaoeIgqh5uBFBKEo8WAjUqSthx6SqxKwF/8Bc/HWq0JAPFVBoYhYkEhNCz0o1quH2mRt1TfyKssw82Z2ZpKQPvhIyL5575vNzJv33m7KcyNZwCXAOcAxwFHAQcAAXv8J+AFYATQBi4AFwKrXQxkEVAANwB9DNNDGYDeJDwFqgMiCOI8IbQ51kjhbDlVA2yFxHm30MeCa/AhguYPEeSyjTydSBLS6SH4HLfRtJbMJHK4DngJKgBwgAGQQAf5WQp31BHZnO02+DigA0glsp3FMvVOTKGoYZbE8VNhJISgJ0ZbKXzHJhqXW/BagDPAJG2OA1xgeI/w+Ruj7aHNLsSdGdEIlFW3YaZpX2Jggxk8oxubRBxWdyBBbVZAfVRA4DNgkbGyiDiWjiklUqRO2TSybvMbym9JYy1MadvLEcmrLTuwa4bSsuX/mNCYwp2mrTNioiRKziIg2vqbTGY0JzGja8onoFPEJYIVwGCYIv4EiyYtQR1dCwlYlrtggDqmkMk04nTawVydS8f/FiMxhwfAUvwpYitlZwt9MpEDwy6YwP3kiGPgd19m2wsF+vAlZXB5vAO/x2j78bOGJzCq284A1rMZWMaqo0o6vgEOCa3f2oFGRvIyRZ86PY6mY5b4HgnSBEZtHMAI3ANcBRzg9dhe/YJnZxHGs7PyMnx5yYFxuCTj+4/5K8veUOOVHXUylK5zvkkSPcfe+SS7mBDN+2AXyojMnJ9Fl3L0NycXA4ICxxX0iPIv0NzzCWMbwlDTFJOEvQ4wzmgCTe46IbyvIKyeQdAnFZdIB+ZuaJ7x0CSXZxCK5azEB3SpLuon9WLzl5YSm8UWLpsFbTT0ZlxUfDxCRXNA0PmwxgVOaejIuTZ+4g5c1Ow0nLSagMzaNXKT/vm0y99xiD8zbJnMu0uk1wsFvxQQ+ukinbQqaA8S4Z7jGTwNeSHR+Afa6KGhMS8qzAv0FTJl5uYipNq8/7KKkNC3qb8d03imaVztyBfAhNm7cRVFv2lZ5DPgEuKbRQuTv7jjm/w9ctVVMGlthwqYuL6ygOuOqseWqtWgj1q1FV83dpOKsueu6va7b+3HaXt8VDzh2xSOm+HLq24d88Y3dt49Z4yG2bx908yd2X75qIHqm0POXPVKOJtOz123+CjAA2DMUTzy96dgAAAAASUVORK5CYII=",
+              "label": "Lead"
+            }
+          ],
+          "desc": "The icon on the card",
+          "name": "icon",
+          "label": "Icon",
+          "type": "select"
+        },
+        {
+          "desc": "The title of the card",
+          "name": "title",
+          "label": "Title",
+          "type": "string"
+        },
+        {
+          "desc": "Message to show on the card.",
+          "name": "message",
+          "label": "Message",
+          "type": "text"
+        }
+      ],
+      "label": "Basic settings"
+    },
+    {
+      "controls": [
+        {
+          "desc": "Which object to list",
+          "name": "object",
+          "label": "Object type",
+          "type": "objecttype"
+        },
+        {
+          "desc": "Filter objects to show",
+          "objecttyperef": "object",
+          "name": "filter",
+          "label": "Filter",
+          "type": "objectfilter"
+        },
+        {
+          "desc": "Check this to force the card to show all objects, not just the ones that are owned by the current user",
+          "name": "adminmode",
+          "label": "Show all objects",
+          "type": "boolean"
+        },
+        {
+          "maxFields": 1,
+          "desc": "Order field",
+          "objecttyperef": "object",
+          "name": "orderfield",
+          "label": "Order by",
+          "type": "objectfields"
+        },
+        {
+          "values": [
+            {
+              "id": "ASC",
+              "label": "Ascending"
+            },
+            {
+              "id": "DESC",
+              "label": "Descending"
+            }
+          ],
+          "desc": "The direction of order from small to large (Ascending) or from large to small (Descending).",
+          "name": "orderdir",
+          "label": "Order direction",
+          "type": "select"
+        },
+        {
+          "desc": "Order label is shown before the order value on the card.",
+          "name": "orderlabel",
+          "label": "Order label",
+          "type": "text"
+        },
+        {
+          "desc": "Limit the max numbers of items to include in the query (set to 0 to include all)",
+          "name": "limit",
+          "label": "Query limit",
+          "type": "number"
+        }
+      ],
+      "label": "Which objects to look for"
+    },
+    {
+      "controls": [
+        {
+          "desc": "Specify the field to show as the title for each item in the list.",
+          "name": "itemtitle",
+          "label": "Title field",
+          "type": "text"
+        },
+        {
+          "desc": "Specify the field to show as the subtitle for each item in the list.",
+          "name": "itemsubtitle",
+          "label": "Subtitle field",
+          "type": "text"
+        },
+        {
+          "desc": "Specify which fields to show in details",
+          "objecttyperef": "object",
+          "name": "fields",
+          "label": "Fields",
+          "type": "objectfields"
+        },
+        {
+          "desc": "Specify a field to bucket upon, empty means no bucketing",
+          "name": "bucketField",
+          "label": "Bucket field",
+          "type": "text"
+        },
+        {
+          "desc": "Enable the tabbed layout",
+          "name": "useTabs",
+          "label": "Tabbed layout",
+          "type": "boolean"
+        },
+        {
+          "desc": "Hide the details tab",
+          "name": "hideDetails",
+          "label": "Hide details",
+          "type": "boolean"
+        },
+        {
+          "desc": "Items shall be clickable instead of expandable",
+          "name": "flatList",
+          "label": "Show flat list",
+          "type": "boolean"
+        }
+      ],
+      "label": "How to display the objects"
+    },
+    {
+      "controls": [
+        {
+          "desc": "Show next activity",
+          "name": "showNextActivity",
+          "label": "Show next uncompleted activity",
+          "type": "boolean"
+        },
+        {
+          "desc": "Show last activity",
+          "name": "showLastActivity",
+          "label": "Show last completed activity",
+          "type": "boolean"
+        },
+        {
+          "values": [
+            {
+              "id": "no",
+              "label": "No activity filtering"
+            },
+            {
+              "id": "without",
+              "label": "Show only items without next activity"
+            },
+            {
+              "id": "with",
+              "label": "Show only items with next activity"
+            }
+          ],
+          "desc": "How do you wanna filter on activity",
+          "name": "activityFilterType",
+          "label": "Filter the items shown based on activity",
+          "type": "select"
+        },
+        {
+          "desc": "Filter Tasks to include (will affect both the activity filter and the next activity)",
+          "objecttype": "Task",
+          "name": "taskFilter",
+          "label": "Task filter",
+          "type": "objectfilter"
+        },
+        {
+          "desc": "Filter Events to include (will affect both the activity filter and the next activity)",
+          "objecttype": "Event",
+          "name": "eventFilter",
+          "label": "Event filter",
+          "type": "objectfilter"
+        },
+        {
+          "desc": "Show the Add Task, Log call and Book Meeting buttons",
+          "name": "showActionButtons",
+          "label": "Show Action Buttons",
+          "type": "boolean"
+        }
+      ],
+      "label": "Activities"
+    },
+    {
+      "controls": [
+        {
+          "desc": "Should this card trigger notifications",
+          "name": "notify",
+          "label": "Show notifications",
+          "type": "boolean"
+        }
+      ],
+      "label": "Notifications"
+    }
+  ],
+  "tags": [
+    "Day-to-Day",
+    "Sales Driver",
+    "custom"
+  ],
+  "events": [
+    "daily",
+    "addaction:all",
+    "updateaction:all",
+    "usersettings"
+  ],
+  "description": "A list of objects.",
+  "angular": true,
+  "label": "Object List (clone)"
+}

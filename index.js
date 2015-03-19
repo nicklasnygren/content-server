@@ -15,9 +15,9 @@ function onPost (req, res) {
   res.send('Got payload');
   var blob = parseBlob(req.body);
   var path = pathUtils(blob);
-  path.createBlobDir()
-  .then(function (res) {
-    debug(res);
+  path.save()
+  .then(function (_path) {
+    debug('Saved blob files to' + _path);
   });
 };
 

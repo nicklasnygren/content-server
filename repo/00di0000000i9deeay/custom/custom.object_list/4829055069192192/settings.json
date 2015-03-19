@@ -1,0 +1,13 @@
+{
+  "message": "Here are your Opportunities.",
+  "icon": "number",
+  "itemtitle": "Name",
+  "title": "Your Opportunities",
+  "orderdir": "ASC",
+  "adminmode": false,
+  "useTabs": true,
+  "orderfield": "CreatedDate",
+  "object": "Opportunity",
+  "orderlabel": "Active",
+  "urgency": "blue"
+}

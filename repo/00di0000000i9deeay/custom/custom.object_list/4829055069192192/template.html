@@ -1,0 +1,410 @@
+<card>
+    <expander
+              top-level="true"
+              data-type="number">
+        <expander-header
+                         data-title="::settings.title"
+                         data-color="::settings.urgency"
+                         data-symbol="result.icon">
+        </expander-header>
+        <expander-content>
+            <info-message data-message="settings.infoMessage"></info-message>
+            <div ng-if="settings.message && settings.message.length"
+                 class="card-message">
+                {{ ::settings.message }}
+            </div>
+
+            <!-- If: Flat list (no expanders) -->
+            <pager
+               list="result.list"
+               ng-if="::settings.flatList">
+                <pager-controls></pager-controls>
+                <div                   
+                   data-ng-repeat="item in pager.items track by item.Id"
+                   data-sf-object="item"
+                   class="briskListItem"
+                  <h3 class="briskExpanderHeaderTitle">
+                    <card-link>{{ SFObject[settings.itemtitle] }}</card-link>
+                    <small class="mini capitals text-muted briskExpanderHeaderLabel">
+                      {{ item[settings.itemlabel] || item.orderLabel }}
+                    </small>
+                  </h3>
+                  <p class="briskExpanderHeaderDescription" ng-if="$eval(settings.itemsubtitle, item)">
+                    <small class="text-muted"> {{ $eval(settings.itemsubtitle, SFObject) | limitTo:140 }}
+                      <span
+                         ng-show="description.length > 140">...</span>
+                    </small>
+                  </p>                  
+                </div>
+            </pager>
+            <!-- /If: Flat list (no expanders) -->
+
+            <!-- If: Using buckets -->
+            <expander
+                      data-ng-if="::(settings.bucketField.length && !settings.flatList)"
+                      data-ng-repeat="(bucketTitle, bucket) in result.list | bucketBy:settings.bucketField:this track by bucketTitle"
+                      data-type="bucket">
+                <expander-header
+                                 data-title="bucketTitle"
+                                 data-symbol="bucket.length">
+                </expander-header>
+                <expander-content>
+                    <pager list="bucket">
+                        <pager-controls></pager-controls>
+                        <include-template
+                                          class="anti-expander-padding"
+                                          data-name="oneListItem"
+                                          data-ng-repeat="item in pager.items track by item.Id">
+                        </include-template>
+                    </pager>
+                </expander-content>
+            </expander>
+            <!-- /If: Using buckets -->
+
+            <!-- If: Not using buckets -->
+            <pager list="result.list"
+                   data-ng-if="::(!settings.bucketField.length && !settings.flatList)">
+                <pager-controls></pager-controls>
+                <include-template                                  
+                                  data-name="oneListItem"
+                                  data-ng-repeat="item in pager.items track by item.Id">
+                </include-template>
+            </pager>
+            <!-- /If: Not using buckets -->
+
+            <card-options-link>
+            </card-options-link>
+        </expander-content>
+    </expander>
+
+    <!-- Template: Single item -->
+    <define-template
+                     data-name="oneListItem">
+        <expander
+                  data-sf-object="item"
+                  data-type="default">
+            <expander-header
+                             data-title="SFObject[settings.itemtitle || 'Name']"
+                             data-description="$eval(settings.itemsubtitle, item)"
+                             data-label="SFObject[settings.itemlabel] || item.orderLabel">
+            </expander-header>
+            <expander-content>
+                <!-- If: Using tabs -->
+                <tab-section
+                             data-ng-if="::settings.useTabs">
+                    <tab-controls>
+                        <card-link
+                                   class="pull-right">
+                            More details
+                        </card-link>
+                    </tab-controls>
+                    <tab
+                         data-ng-if="::!settings.hideDetails"
+                         data-label="Details">
+                        <include-template
+                                          data-name="detailsSection">
+                        </include-template>
+                    </tab>
+                    <tab
+                         data-ng-if="::settings.showNextActivity"
+                         data-label="Future"
+                         data-number="(item.nextActivity ? 1 : 0) +
+                                      (item.Tasks ? item.Tasks.length : 0) +
+                                      (item.Events ? item.Events.length : 0)">
+                        <include-template
+                                          style="margin-top: -5px"
+                                          data-name="futureSection">
+                        </include-template>
+                    </tab>
+                    <tab
+                         data-ng-if="::settings.showLastActivity"
+                         data-label="History"
+                         data-number="SFObject.ActivityHistories ? SFObject.ActivityHistories.length : 0">
+                        <include-template
+                                          data-name="historySection">
+                        </include-template>
+                    </tab>
+                </tab-section>
+                <!-- /If: Using tabs -->
+
+                <!-- If: Not using tabs -->
+                <div
+                     data-ng-if="::!settings.useTabs">
+                    <div
+                         data-ng-if="::settings.showNextActivity">
+                    <next-activity
+                       key="item"
+                       show-who="result.taskRelation && result.taskRelation!='WhoId'"
+                       show-what="result.taskRelation && result.taskRelation!='WhatId'">
+                    </next-activity>
+                        
+                        <h4
+                            data-ng-if="!items.Tasks.length">
+                            Tasks
+                        </h4>
+                        <include-template
+                                          data-name="taskList">
+                        </include-template>
+                    </div>
+                    <div
+                         data-ng-if="::settings.showLastActivity">
+                        <h4
+                            data-ng-if="!items.ActivityHistories.length">
+                            Events
+                        </h4>
+                        <include-template
+                                          data-name="historySection">
+                        </include-template>
+                    </div>
+                    <div
+                         data-ng-if="::!settings.hideDetails">
+                        <h4
+                            data-ng-if="!settings.fields.length && !settings.userFields.length">
+                            Details
+                        </h4>
+                        <include-template
+                                          data-name="detailsSection">
+                        </include-template>
+                    </div>
+                </div>
+                <!-- /If: Not using tabs -->
+
+
+                <div ng-if="settings.showActionButtons"
+                     class="light-gray-with-padding text-center">
+                    <inline-add-group 
+                                      data-options="{
+                                                        addActions: [{
+                                                        label: 'Add task',
+                                                        templateName: 'Task',
+                                                        hidden: result.hiddenRelations,
+                                                        default:{
+                                                        What: result.taskRelation=='WhatId' ? SFObject : null,
+                                                        Who: result.taskRelation=='WhoId' ? SFObject : null
+                                                        }
+                                                    },{
+                                                        label: 'Log call',
+                                                        templateName: 'Log call today',
+                                                        hidden: result.hiddenRelations,
+                                                        default:{
+                                                        What: result.taskRelation=='WhatId' ? SFObject : null,
+                                                        Who: result.taskRelation=='WhoId' ? SFObject : null
+                                                        }
+                                                    },{
+                                                        label: 'Book meeting',
+                                                        templateName: 'Book meeting',
+                                                        hidden: result.hiddenRelations,
+                                                        default:{
+                                                        What: result.taskRelation=='WhatId' ? SFObject : null,
+                                                        Who: result.taskRelation=='WhoId' ? SFObject : null
+                                                        }
+                                                    },]
+                                                    }">
+                    </inline-add-group>
+                </div>
+            </expander-content>
+        </expander>
+    </define-template>
+    <!-- /Template: Single item -->
+
+    <!-- Template: Details section -->
+    <define-template
+                     data-name="detailsSection">
+        <p
+           class="text-muted"
+           data-ng-if="!settings.fields.length && !settings.userFields.length">
+            There are currently no fields to display in this section.
+            Click "Edit layout" link to add and customize fields.
+        </p>
+        <object-field-list
+           sortable
+           data-fields="settings.fields, settings.userFields">
+          <span class="pull-right">
+	    <span data-ng-if="::!settings.useTabs">
+	      <card-link>
+                More details
+              </card-link>
+	      <span class="text-muted">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+	    </span>
+            <a 
+               href
+               class="capitals text-muted mini"
+               style="margin-bottom: 5px"
+               ng-click="card.toggleLayoutEdit()">
+              {{ card.editingLayout ? 'Done editing' : 'Edit layout' }} <i class="fa fa-cog"></i>
+            </a>
+	  </span>
+          <div class="clear"></div>
+        </object-field-list>
+    </define-template>
+    <!-- /Template: Details section -->
+
+    <!-- Template: Upcoming tasks/events section -->
+    <define-template
+                     data-name="futureSection">      
+      <next-activity key="item"
+                     show-who="result.taskRelation && result.taskRelation!='WhoId'"
+                     show-what="result.taskRelation && result.taskRelation!='WhatId'">
+        </next-activity>
+
+        <include-template
+                          data-name="taskList">
+        </include-template>
+    </define-template>
+    <!-- /Template: Upcoming tasks/events section -->
+
+    <!-- Template: Past tasks/events section -->
+    <define-template
+                     data-name="historySection">
+        <div
+             ng-if="item.ActivityHistories.length">
+            <h4
+                style="margin-top: 0">Most recent activity</h4>
+            <ul
+                class="list-unstyled">
+                <li
+                    data-sf-object="item as ActivityHistory"
+                    data-ng-repeat="item in item.ActivityHistories | limitTo:3 track by item.attributes.url">
+                    <span
+                          class="text-ellipsis text-muted">
+                        <card-link>
+                            {{ ActivityHistory.Subject || 'No subject' }}
+                        </card-link>
+                        <br />
+                        <span
+                              class="mini capitals">
+                            {{ ActivityHistory.getObjectType() }}
+                            |
+                            {{ (ActivityHistory.StartDateTime | briskDateTime) || (ActivityHistory.ActivityDate | briskDate) }}
+                            |
+                            <span
+                                  data-ng-if="::result.eventRelation === 'WhoId'">
+                                <card-link
+                                           data-ng-if="ActivityHistory.WhatId"
+                                           data-sf-object="ActivityHistory.What as What">
+                                    {{ ActivityHistory.Name }}
+                                </card-link>
+                                <span
+                                      data-ng-if="!ActivityHistory.WhatId">
+                                    No opportunity/account
+                                </span>
+                            </span>
+                            <span
+                                  data-ng-if="::result.eventRelation === 'WhatId'">
+                                <card-link
+                                           data-ng-if="ActivityHistory.WhoId"
+                                           data-sf-object="ActivityHistory.Who as Who">
+                                    {{ Who.Name }}
+                                </card-link>
+                                <span
+                                      data-ng-if="!ActivityHistory.WhoId">
+                                    No contact/lead
+                                </span>
+                            </span>
+                        </span>
+                    </span>
+                    <p
+                       class="text-muted small">
+                        {{ ActivityHistory.Description | briskTruncate : 140 : '...'}}
+                    </p>
+                </li>
+            </ul>
+        </div>
+        
+        <p
+           class="text-muted"
+           data-ng-if="!item.ActivityHistories.length">
+            There is currently no activity history on this {{ ::SFObject.getObjectType() }}.
+        </p>
+    </define-template>
+    <!-- /Template: Past tasks/events section -->
+
+    <!-- Template: Task listing -->
+    <define-template
+                     data-name="taskList">
+        <div
+             data-ng-if="item.Tasks.length">
+            <h4>Upcoming Tasks</h4>
+            <ul
+                class="list-unstyled">
+                <li
+                    data-sf-object="item as Task"
+                    data-ng-repeat="item in item.Tasks | limitTo:3 track by item.attributes.url">
+                    <span
+                          class="text-ellipsis text-muted">
+                        <card-link>
+                            {{ Task.Subject || 'No subject' }}
+                        </card-link>
+                        <span
+                              class="mini capitals">
+                            &nbsp;{{ Task.ActivityDate | briskDate }}
+                        </span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        
+        <div
+             data-ng-if="item.Events.length">
+            <h4
+                style="margin-top: 0">Upcoming Events</h4>
+            <ul
+                class="list-unstyled">
+                <li
+                    data-sf-object="item as Event"
+                    data-ng-repeat="item in item.Events | limitTo:3 track by item.attributes.url">
+                    <span
+                          class="text-ellipsis text-muted">
+                        <card-link>
+                            {{ Event.Subject || 'No subject' }}
+                        </card-link>
+                        <br />
+                        <span
+                              class="mini capitals">
+                            {{ Event.StartDateTime | briskDateTime }}
+                            |
+                            <span
+                                  data-ng-if="::result.eventRelation === 'WhoId'">
+                                <card-link
+                                           ng-if="Event.WhatId"
+                                           data-sf-object="Event.What as What">
+                                    {{ What.Name }}
+                                </card-link>
+                                <span
+                                      ng-if="!Event.WhatId">
+                                    No opportunity/account
+                                </span>
+                            </span>
+                            <span
+                                  data-ng-if="::result.eventRelation === 'WhatId'">
+                                <card-link
+                                           data-ng-if="Event.WhoId"
+                                           sf-object="Event.Who as Who">
+                                    {{ Who.Name }}
+                                </card-link>
+                                <span
+                                      ng-if="!Event.WhoId">
+                                    No contact/lead
+                                </span>
+                            </span>
+                        </span>
+                    </span>
+                    <p
+                       class="text-muted small">
+                        {{ Event.Description | briskTruncate : 140 : '...'}}
+                    </p>
+                </li>
+            </ul>
+        </div>
+        
+        <p
+           class="text-muted"
+           data-ng-if="!item.Tasks.length &&
+                       !item.Events.length &&
+                       !item.nextActivity">
+            There is currently no future activity on this {{ ::SFObject.getObjectType() }}. 
+            Click "Add task" below to add one.
+        </p>
+    </define-template>
+    <!-- /Template: Task listing -->
+</card>
