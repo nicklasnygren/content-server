@@ -7,7 +7,7 @@ var parseBlob  = require('./lib/parseBlob');
 var pathUtils  = require('./lib/pathUtils.js');
 var git        = require('./lib/git');
 var app        = express();
-var server;
+var server, latestOrgId;
 
 app.use(bodyParser.json());
 app.post('/', onPost)
@@ -16,14 +16,29 @@ function onPost (req, res) {
   res.send('Got payload');
   var blob = parseBlob(req.body);
   var path = pathUtils(blob);
+  var msg;
+
   path.save()
   .then(function (pathInfo) {
+    var method;
+
+    msg = getCommitMessage(pathInfo, blob);;
     debug('Saved blob files to' + pathInfo.path);
 
-    return git.commitBlob(pathInfo, blob);
+    if (latestOrgId === blob.meta.org) {
+      method = 'amend';
+      debug('Amending blob...');
+    }
+    else {
+      method = 'head';
+      debug('Committing blob...');
+    }
+
+    return git.commit[method](pathInfo.path, blob.meta.committer, msg);
   })
-  .then(function (commitMsg) {
-    debug(`Committed blob update with message "${commitMsg}"`);
+  .then(function () {
+    latestOrgId = blob.meta.org;
+    debug(`Committed blob diff with message "${msg}"`);
   });
 };
 
@@ -36,3 +51,15 @@ server = app.listen(DEFAULT_PORT, function () {
   debug('Example app listening at http://localhost:%s', port);
 });
 
+function getCommitMessage (pathInfo, blob) {
+  var id = formatPath(blob.getParentString() + '.' + blob.meta.id);
+  var verb = pathInfo.createdNewDir ? 'create' : 'update';
+  return `${verb}(${id}): on org ${blob.meta.org}`;
+};
+
+function formatPath (rawPath) {
+  res = rawPath;
+  res = res.toLowerCase();
+  res = res.replace(/\s+/g, '_');
+  return res;
+};
