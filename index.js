@@ -5,6 +5,7 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 var parseBlob  = require('./lib/parseBlob');
 var pathUtils  = require('./lib/pathUtils.js');
+var git        = require('./lib/git');
 var app        = express();
 var server;
 
@@ -16,8 +17,13 @@ function onPost (req, res) {
   var blob = parseBlob(req.body);
   var path = pathUtils(blob);
   path.save()
-  .then(function (_path) {
-    debug('Saved blob files to' + _path);
+  .then(function (pathInfo) {
+    debug('Saved blob files to' + pathInfo.path);
+
+    return git.commitBlob(pathInfo, blob);
+  })
+  .then(function (commitMsg) {
+    debug(`Committed blob update with message "${commitMsg}"`);
   });
 };
 
