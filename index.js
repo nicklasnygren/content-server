@@ -17,7 +17,10 @@ var cardSaveQueue = async.queue(function (blob, callback) {
   .then(function (msg) {
     debug('Committed blob update with message "' + msg);
     callback();
-  });
+  }, function (err) {
+    debug(err);
+    callback();
+  })
 }, 1);
 
 app.use(bodyParser.json());
