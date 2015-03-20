@@ -1,6 +1,6 @@
 'use strict';
 
-const DEFAULT_PORT = 5001;
+const PORT = process.env.PORT || 5001;
 
 var async      = require('async');
 var debug      = require('debug')('main');
@@ -31,7 +31,7 @@ app.post('/card', function cardPost (req, res) {
   res.send('OK');
 });
 
-server = app.listen(DEFAULT_PORT, function () {
+server = app.listen(PORT, function () {
   var host, port;
 
   host = server.address().port;
