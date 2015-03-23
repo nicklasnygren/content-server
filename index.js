@@ -54,6 +54,7 @@ app.post('/card/delete', function cardDelete (req, res) {
     })
   )
   .then(function () {
+    if (TEST) { return true; }
     return git.diff.bool();
   })
   .then(function (diff) {
@@ -61,7 +62,10 @@ app.post('/card/delete', function cardDelete (req, res) {
       debug('No diff... aborting commit.')
       return;
     }
-    if (TEST) { return true; }
+    if (TEST) {
+      debug('No testing on git functionality yet');
+      return;
+    }
     return git.commit.head('*', blob.meta.committer, 'Delete card sources');
   })
   .then(function () {
