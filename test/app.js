@@ -5,8 +5,8 @@ var should  = require('should');
 describe('endpoints', function () {
   var payload = {
     items: [{
-      orgId: 'testOrgId',
-      cardId: 'testCoreCloneId'
+      org: 'testOrgId',
+      id: 'testCoreCloneId'
     }],
     meta: {
       committer: {

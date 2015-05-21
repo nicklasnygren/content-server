@@ -20,7 +20,7 @@ describe('factories.CardBlob.getCommitMessage', function () {
 
   beforeEach(function () {
     blobWithLabel    = CardBlobFactory(blobDataWithLabel);
-    blobWithoutLabel = CardBlobFactory(blobDataWithoutLabel);
+    //blobWithoutLabel = CardBlobFactory(blobDataWithoutLabel);
   });
 
   it('tags commit message with "create" if a new dir was created', function () {
