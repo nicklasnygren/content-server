@@ -90,7 +90,7 @@ app.post('/org/delete', function orgDelete (req, res) {
       debug('No testing on git functionality yet');
       return;
     }
-    return git.commit.head('*', blob.meta.committer, 'Delete card sources');
+    return git.commit.head('*', blob.meta.committer, 'Delete organization');
   })
   .then(function () {
     res.send('OK');
