@@ -73,6 +73,30 @@ app.post('/card/delete', function cardDelete (req, res) {
   });
 });
 
+app.post('/org/delete', function orgDelete (req, res) {
+  var blob = req.body;
+
+  repo.deleteOrg(blob.org)
+  .then(function() {
+    if (TEST) { return true; }
+    return git.diff.bool();
+  })
+  .then(function (diff) {
+    if (!diff) {
+      debug('No diff... aborting commit.')
+      return;
+    }
+    if (TEST) {
+      debug('No testing on git functionality yet');
+      return;
+    }
+    return git.commit.head('*', blob.meta.committer, 'Delete card sources');
+  })
+  .then(function () {
+    res.send('OK');
+  });
+});
+
 app.get('/querySelector', function (req, res) {
   debug('Got querySelector request');
   debug(req.query.selector);
